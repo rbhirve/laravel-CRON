@@ -14,7 +14,12 @@ class TestController extends Controller
         if( true == empty($arrTestData) ){
             return response()->api(false, 'No Data found!', null);
         }
-        return response($arrTestData);
+        return response()->json(
+            [
+                'status' => 'success',
+                'token'  =>  $arrTestData
+            ]
+        );
     }
 
     public function getTestDataDescription($testDataId) {
@@ -26,6 +31,11 @@ class TestController extends Controller
         if( true == empty($arrTestData) ) {
             return response()->api(false, 'No Data found!', null);
         }
-        return response($arrTestData);
+        return response()->json(
+            [
+                'status' => 'success',
+                'token'  =>  $arrTestData
+            ]
+        );
     }
-}
+}   
