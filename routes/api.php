@@ -19,13 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['namespace'=>'Api'], function(){ 
-
     Route::post('login', 'UserController@login');
     Route::post('signup', 'UserController@signup');
 });
 
 Route::group(['middleware' => 'auth:api'], function() {
         
+    // Instruction Page:
+    Route::get('/instructions', 'TestController@instructions');
+    
+    // Test data:
     Route::get('/testdata', 'TestController@getTestData');
     Route::get('/testdatadescription/{id}', 'TestController@getTestDataDescription');
 });

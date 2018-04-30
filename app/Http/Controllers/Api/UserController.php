@@ -21,13 +21,14 @@ class UserController extends Controller
       return  response()->json($user);
     }
     
-    public function login(){
-        if( auth()->attempt(['email' => request('email'), 'password' => request('password')]) )
-        {
+    public function login() {
+
+        if( auth()->attempt(['email' => request('email'), 'password' => request('password')]) ){
             $token =  auth()->user()->createToken('MyApp')->accessToken;
-            return response()->json(['status'=> 'success', 'token' => $token], 200);
+        
+            return response()->json(['status'=> 'success', 'message' => '', 'data' => ['token' => $token ]], 200);
         }
-        else{
+        else {
             return response()->json(['error'=>'Unauthorised'], 401);
         }
     }
