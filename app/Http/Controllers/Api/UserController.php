@@ -14,6 +14,7 @@ class UserController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => bcrypt($request->password),
+        'status' => 1,
       ]);
 
       $token = auth()->login($user);

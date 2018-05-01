@@ -67,8 +67,8 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-               <form acion="">
-                    <button class="btn btn-primary"type="submit" form="form1" value="">Submit</button>
+               <form acion="confirm">
+                    <button class="btn btn-primary"type="submit" value="as">Submit</button>
                </form>
             </div>
         </div>

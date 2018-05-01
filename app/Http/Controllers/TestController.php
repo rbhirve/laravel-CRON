@@ -9,6 +9,7 @@ use App\Model\Test;
 class TestController extends Controller
 {
     public function instructions() {
+        
         $authId = Auth()->user()->id;
         if( true == empty($authId) ){
             return response()->json(['status' => false, 'message' => 'No Data found!','data' => null ]);
@@ -26,37 +27,53 @@ class TestController extends Controller
     public function getTestData() {
 
         $userId = Auth()->user()->id;
-        $time=time();
-        dd($time);
-        // $user = User::where('id', $userId)
-        //                 ->update(['test_start' => $time ]);
-        
-        $arrTestData = Test::select('id', 'name', 'mobile', 'address')->get();
 
-        if( true == empty($arrTestData) ){
-            return response()->json(['status' => false, 'message' => 'No Data found!','data' => null ]);
-        }
+        if(Auth()->user()->status == 1) {
+
+            $arrTestData = Test::select('id', 'name', 'mobile', 'address')->get();
+
+            if( true == empty($arrTestData) ){
+                return response()->json(['status' => false, 'message' => 'No Data found!','data' => null ]);
+            }
+            return response()->json(
+                [
+                    'status' => 'success',
+                    'data'  =>  $arrTestData
+                ]
+            );
+        } 
+
         return response()->json(
             [
                 'status' => 'success',
-                'data'  =>  $arrTestData
+                'message'  =>  'Your test time is finished'
             ]
         );
-    }
+            
+        }
 
     public function getTestDataDescription($testDataId) {
 
-        $arrTestData = Test::select('id', 'description')
-                             ->where('id', $testDataId)
-                             ->get();
+        if(Auth()->user()->status == 1) {
+            $arrTestData = Test::select('id', 'description')
+                                ->where('id', $testDataId)
+                                ->get();
 
-        if( true == empty($arrTestData) ) {
-            return response()->json(['status' => false, 'message' => 'No Data found!','data' => null ]);
-        } 
+            if( true == empty($arrTestData) ) {
+                return response()->json(['status' => false, 'message' => 'No Data found!','data' => null ]);
+            } 
+            return response()->json(
+                [
+                    'status' => 'success',
+                    'data'  =>  $arrTestData
+                ]
+            );
+        }
+        
         return response()->json(
             [
                 'status' => 'success',
-                'data'  =>  $arrTestData
+                'message'  =>  'Your test time is finished'
             ]
         );
     }

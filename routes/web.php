@@ -13,7 +13,5 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    // return Auth()->user();
-    // return view('welcome');
-});
+Route::get('/', 'UserController@index');
+Route::get('/confirm/{id}', 'UserController@confirm');
