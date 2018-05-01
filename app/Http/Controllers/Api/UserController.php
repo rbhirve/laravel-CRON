@@ -14,7 +14,7 @@ class UserController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => bcrypt($request->password),
-        'status' => 1,
+        'status' => 0,
       ]);
 
       $token = auth()->login($user);
@@ -25,6 +25,7 @@ class UserController extends Controller
     public function login() {
 
         if( auth()->attempt(['email' => request('email'), 'password' => request('password')]) ){
+            
             $token =  auth()->user()->createToken('MyApp')->accessToken;
         
             return response()->json(['status'=> 'success', 'message' => '', 'data' => ['token' => $token ]], 200);

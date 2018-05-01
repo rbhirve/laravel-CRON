@@ -24,9 +24,6 @@ Route::group(['namespace'=>'Api'], function(){
 });
 
 Route::group(['middleware' => 'auth:api'], function() {
-        
-    // Instruction Page:
-    Route::get('/instructions', 'TestController@instructions');
     
     // Test data:
     Route::get('/testdata', 'TestController@getTestData');

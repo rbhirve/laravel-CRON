@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', 'UserController@index');
+
 Route::get('/confirm/{id}', 'UserController@confirm');
+Route::get('/test/{id}', 'TestController@test');
+
